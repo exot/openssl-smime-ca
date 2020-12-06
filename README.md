@@ -1,11 +1,11 @@
-A simple, OpenSSL-based public key infrastructure for smime certificates.
+# A simple, OpenSSL-based public key infrastructure for smime certificates.
 
 Configuration based on
 https://pki-tutorial.readthedocs.io/en/latest/simple/index.html, but leaving out
 the intermediate subordinate CA and tinkering around with extensions and
 policies.
 
-# Generate CSR
+## Generate CSR
 
 To generate a default SMIME CSR, just run `make`.  To specify the file name of
 the csr, enter the slightly more verbose
@@ -24,7 +24,7 @@ make certs/your-cert-name-here.p12
 
 Then import the `p12` file via `gpgsm --import certs/your-cert-name-here.p12`.
 
-# Playing Root CA
+## Playing Root CA
 
 If you want to be the root, run
 
