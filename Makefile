@@ -1,6 +1,6 @@
 .POSIX:
 .DEFAULT: all
-.PHONY: distclean
+.PHONY: all distclean
 
 all: certs/smime-test.csr
 
