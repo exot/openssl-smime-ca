@@ -45,3 +45,9 @@ To generate CRLs, run
 ```sh
 make root-ca/ca.crl
 ```
+
+## License
+
+These files are licensed under the MIT license.  This work is based on
+https://pki-tutorial.readthedocs.io/en/latest/simple/index.html,
+Stefan H. Holek, 2014.
