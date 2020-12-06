@@ -44,6 +44,7 @@ certs/%.p12: certs/%.crt certs/%.key
 	openssl pkcs12 -export \
 	               -inkey certs/$*.key \
 	               -in certs/$*.crt \
+	               -certfile root-ca/ca.crt \
 	               -out certs/$*.p12
 
 distclean:
