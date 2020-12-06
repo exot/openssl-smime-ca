@@ -1,4 +1,4 @@
-# A simple, OpenSSL-based public key infrastructure for smime certificates.
+# A simple, OpenSSL-based public key infrastructure for SMIME certificates.
 
 Configuration based on
 https://pki-tutorial.readthedocs.io/en/latest/simple/index.html, but leaving out
