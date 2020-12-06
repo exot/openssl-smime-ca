@@ -27,7 +27,7 @@ root-ca/ca.crl:
 	           -out root-ca/ca.crl
 
 certs/%.csr:
-	mkdir certs/
+	mkdir -p certs/
 	openssl req -new \
 	            -config config/smime-req.conf \
 	            -out certs/$*.csr \
