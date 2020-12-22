@@ -50,6 +50,15 @@ To generate CRLs, run
 make root-ca/ca.crl
 ```
 
+Revoke certificates by
+
+```sh
+openssl ca -config config/root-ca.conf -revoke root-ca/${CERT_SERIAL}.pem
+```
+
+where `CERT_SERIAL` contains the serial number of the certificate that should be
+revoked.  Regenerate the CRL afterwards and publish it accordingly.
+
 ## License
 
 These files are licensed under the MIT license.  This work is based on
