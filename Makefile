@@ -21,7 +21,9 @@ root-ca/ca.crt:
 	           -out root-ca/ca.crt \
 	           -extensions root_ca_ext
 
-root-ca/ca.crl:
+# Make sure CRLs are regenerated when the CA database changes by including the
+# file as a prerequisite in the recipe
+root-ca/ca.crl: root-ca/ca.crt root-ca/db/ca.db
 	openssl ca -gencrl \
 	           -config config/root-ca.conf \
 	           -out root-ca/ca.crl
