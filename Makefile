@@ -37,6 +37,7 @@ certs/%.crt: certs/%.csr
 	openssl ca -config config/root-ca.conf \
 	           -in certs/$*.csr \
 	           -out certs/$*.crt \
+	           -days 1780 \
 	           -extensions email_ext \
 	           -policy email_pol
 
