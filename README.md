@@ -32,6 +32,10 @@ If you want to be the root, run
 make root-ca/ca.crt
 ```
 
+If you are going to make use of CRLs and want to make them available at an URI,
+change the `crl_distribution_point` variable defined in the `root_ca` section of
+[root-ca.conf](config/root-ca.conf).
+
 To sign CSRs, put those into the `certs` directory and run
 
 ```sh
