@@ -35,7 +35,7 @@ make root-ca/ca.crt
 To sign CSRs, put those into the `certs` directory and run
 
 ```sh
-make certs/csr-name.csr
+make certs/csr-name.crt
 ```
 
 send the resulting `csr-name.crt` to the requester.
