@@ -28,10 +28,14 @@ root-ca/ca.crl:
 
 certs/%.csr:
 	mkdir -p certs/
+	openssl genpkey -algorithm RSA-PSS \
+	                -out certs/$*.key \
+	                -aes256 \
+	                -pkeyopt rsa_keygen_bits:4096
 	openssl req -new \
+	            -key certs/$*.key \
 	            -config config/smime-req.conf \
-	            -out certs/$*.csr \
-	            -keyout certs/$*.key
+	            -out certs/$*.csr
 
 certs/%.crt: certs/%.csr
 	openssl ca -config config/root-ca.conf \
