@@ -26,7 +26,9 @@ root-ca/ca.crt:
 root-ca/ca.crl: root-ca/ca.crt root-ca/db/ca.db
 	openssl ca -gencrl \
 	           -config config/root-ca.conf \
-	           -out root-ca/ca.crl
+	| openssl crl -in - \
+	           -out root-ca/ca.crl \
+	           -outform der
 
 certs/%.csr:
 	mkdir -p certs/
