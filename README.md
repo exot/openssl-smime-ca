@@ -70,11 +70,12 @@ make root-ca/ca.crl
 Revoke certificates by
 
 ```sh
-openssl ca -config config/root-ca.conf -revoke root-ca/${CERT_SERIAL}.pem
+openssl ca -config config/root-ca.conf -revoke root-ca/${CERT_SERIAL}.pem -crl_reason superseded
 ```
 
 where `CERT_SERIAL` contains the serial number of the certificate that should be
-revoked.  Regenerate the CRL afterwards and publish it accordingly.
+revoked.  Also adapt the CRL reason according to your needs.  Regenerate the CRL
+afterwards and publish it accordingly.
 
 ## License
 
