@@ -32,6 +32,14 @@ If you want to be the root, run
 make root-ca/ca.crt
 ```
 
+You may want to change the PKI name (both in [root-ca.conf](config/root-ca.conf)
+and [smime-req.conf](config/smime-req.conf)) and the Authority Information
+Access URI in the Root CA configuration.
+
+If you are going to make use of CRLs and want to make them available at an URI,
+change the `crl_distribution_point` variable defined in the `root_ca` section of
+[root-ca.conf](config/root-ca.conf).
+
 To sign CSRs, put those into the `certs` directory and run
 
 ```sh
@@ -45,6 +53,15 @@ To generate CRLs, run
 ```sh
 make root-ca/ca.crl
 ```
+
+Revoke certificates by
+
+```sh
+openssl ca -config config/root-ca.conf -revoke root-ca/${CERT_SERIAL}.pem
+```
+
+where `CERT_SERIAL` contains the serial number of the certificate that should be
+revoked.  Regenerate the CRL afterwards and publish it accordingly.
 
 ## License
 

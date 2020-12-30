@@ -21,12 +21,16 @@ root-ca/ca.crt:
 	           -out root-ca/ca.crt \
 	           -extensions root_ca_ext
 
-root-ca/ca.crl:
+# Make sure CRLs are regenerated when the CA database changes by including the
+# file as a prerequisite in the recipe
+root-ca/ca.crl: root-ca/ca.crt root-ca/db/ca.db
 	openssl ca -gencrl \
 	           -config config/root-ca.conf \
-	           -out root-ca/ca.crl
+	| openssl crl -in - \
+	           -out root-ca/ca.crl \
+	           -outform der
 
-certs/%.csr:
+certs/%.csr certs/%.key:
 	mkdir -p certs/
 	openssl genpkey -algorithm RSA-PSS \
 	                -out certs/$*.key \
@@ -41,6 +45,7 @@ certs/%.crt: certs/%.csr
 	openssl ca -config config/root-ca.conf \
 	           -in certs/$*.csr \
 	           -out certs/$*.crt \
+	           -days 1780 \
 	           -extensions email_ext \
 	           -policy email_pol
 
