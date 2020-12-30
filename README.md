@@ -32,6 +32,10 @@ If you want to be the root, run
 make root-ca/ca.crt
 ```
 
+You may want to change the PKI name (both in [root-ca.conf](config/root-ca.conf)
+and [smime-req.conf](config/smime-req.conf)) and the Authority Information
+Access URI in the Root CA configuration.
+
 If you are going to make use of CRLs and want to make them available at an URI,
 change the `crl_distribution_point` variable defined in the `root_ca` section of
 [root-ca.conf](config/root-ca.conf).
