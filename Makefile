@@ -30,16 +30,23 @@ root-ca/ca.crl: root-ca/ca.crt root-ca/db/ca.db
 	           -out root-ca/ca.crl \
 	           -outform der
 
-certs/%.csr certs/%.key:
+certs/rsapss_%.csr certs/rsapss_%.key:
 	mkdir -p certs/
 	openssl genpkey -algorithm RSA-PSS \
-	                -out certs/$*.key \
+	                -out certs/rsapss_$*.key \
 	                -aes256 \
 	                -pkeyopt rsa_keygen_bits:4096
 	openssl req -new \
-	            -key certs/$*.key \
+	            -key certs/rsapss_$*.key \
 	            -config config/smime-req.conf \
-	            -out certs/$*.csr
+	            -out certs/rsapss_$*.csr
+
+certs/%.csr certs/%.key:
+	mkdir -p certs/
+	openssl req -new \
+	            -config config/smime-req.conf \
+	            -out certs/$*.csr \
+	            -keyout certs/$*.key
 
 certs/%.crt: certs/%.csr
 	openssl ca -config config/root-ca.conf \

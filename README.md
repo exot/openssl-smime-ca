@@ -24,6 +24,17 @@ make certs/your-cert-name-here.p12
 
 Then import the `p12` file via `gpgsm --import certs/your-cert-name-here.p12`.
 
+Note that this generates classical 4096bit RSA keys and certificates, which
+should be supported by a wide range of mail clients.  If you want to generated
+newer RSA-PSS certificates, prefix your certificate name with `rsapss_` like so:
+
+```sh
+make certs/rsapss_your-cert-name-here.p12
+```
+
+Note that support for checking RSA-PSS signatures might not be that widespread,
+though.
+
 ## Playing Root CA
 
 If you want to be the root, run
@@ -31,6 +42,8 @@ If you want to be the root, run
 ```sh
 make root-ca/ca.crt
 ```
+
+The root certificate will always be a 4096bit RSA certificate.
 
 You may want to change the PKI name (both in [root-ca.conf](config/root-ca.conf)
 and [smime-req.conf](config/smime-req.conf)) and the Authority Information
