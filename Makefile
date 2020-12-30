@@ -30,7 +30,7 @@ root-ca/ca.crl: root-ca/ca.crt root-ca/db/ca.db
 	           -out root-ca/ca.crl \
 	           -outform der
 
-certs/%.csr:
+certs/%.csr certs/%.key:
 	mkdir -p certs/
 	openssl req -new \
 	            -config config/smime-req.conf \
