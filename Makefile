@@ -24,11 +24,7 @@ root-ca/ca.crt:
 # Make sure CRLs are regenerated when the CA database changes by including the
 # file as a prerequisite in the recipe
 root-ca/ca.crl: root-ca/ca.crt root-ca/db/ca.db
-	openssl ca -gencrl \
-	           -config config/root-ca.conf \
-	| openssl crl -in - \
-	           -out root-ca/ca.crl \
-	           -outform der
+	openssl ca -gencrl -config config/root-ca.conf -out root-ca/ca.crl
 
 certs/rsapss_%.csr certs/rsapss_%.key:
 	mkdir -p certs/
